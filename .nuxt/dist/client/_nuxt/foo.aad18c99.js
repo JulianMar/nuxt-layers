@@ -1,0 +1,1 @@
+import{c as e,d as t,a as o,o as a}from"./entry.5d7555a0.js";const r=""+new URL("Rectangle.22ebf22b.png",import.meta.url).href,c=o("img",{src:r},null,-1),m={__name:"foo",setup(n){return(s,l)=>(a(),e("div",null,[t(" Hello from extended page ! "),c]))}};export{m as default};
