@@ -49,9 +49,6 @@
       ],
       "public/*": [
         "/home/projects/nuxt-examples-suakka/public/*"
-      ],
-      "#color-mode-options": [
-        "/home/projects/nuxt-examples-suakka/.nuxt/color-mode-options"
       ]
     }
   },

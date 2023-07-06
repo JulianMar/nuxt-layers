@@ -11,9 +11,9 @@ import "devalue";
 import "@unhead/ssr";
 import "unhead";
 import "@unhead/shared";
+import "vue/server-renderer";
 import "destr";
 import "klona";
-import "vue/server-renderer";
 import "defu";
 const components_islands = {};
 const islandComponents = /* @__PURE__ */ Object.freeze({
@@ -41,4 +41,4 @@ const islandRenderer = /* @__PURE__ */ defineComponent({
 export {
   islandRenderer as default
 };
-//# sourceMappingURL=island-renderer-b709be5c.js.map
+//# sourceMappingURL=island-renderer-c2aa00a2.js.map

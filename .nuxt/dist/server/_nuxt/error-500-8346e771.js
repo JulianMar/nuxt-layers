@@ -1,6 +1,8 @@
-import { _ as _export_sfc, u as useHead } from "../server.mjs";
+import "./index-e12b288f.js";
 import { mergeProps, useSSRContext } from "vue";
 import { ssrRenderAttrs, ssrInterpolate } from "vue/server-renderer";
+import { _ as _export_sfc, a as useHead } from "../server.mjs";
+import "unhead";
 import "ofetch";
 import "#internal/nitro";
 import "hookable";
@@ -10,7 +12,6 @@ import "h3";
 import "ufo";
 import "devalue";
 import "@unhead/ssr";
-import "unhead";
 import "@unhead/shared";
 import "destr";
 import "klona";
@@ -67,4 +68,4 @@ const error500 = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-3
 export {
   error500 as default
 };
-//# sourceMappingURL=error-500-221991cc.js.map
+//# sourceMappingURL=error-500-8346e771.js.map

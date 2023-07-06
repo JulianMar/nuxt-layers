@@ -1,0 +1,1 @@
+import{_ as e,l as t,v as o,m as r,k as c}from"./entry.af244234.js";const n=""+new URL("Rectangle.22ebf22b.png",import.meta.url).href,s={},a=r("img",{src:n},null,-1);function l(_,f){return c(),t("div",null,[o(" Hello from extended page ! "),a])}const d=e(s,[["render",l]]);export{d as default};

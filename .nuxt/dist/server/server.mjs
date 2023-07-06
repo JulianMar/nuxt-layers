@@ -1,4 +1,4 @@
-import { reactive, hasInjectionContext, getCurrentInstance, toRef, isRef, inject, nextTick, shallowRef, computed, isReadonly, version, ref, watchEffect, watch, unref, isShallow, isReactive, toRaw, h, defineComponent, Suspense, mergeProps, Transition, provide, withCtx, createVNode, useSSRContext, defineAsyncComponent, onErrorCaptured, onServerPrefetch, resolveDynamicComponent, createApp } from "vue";
+import { reactive, hasInjectionContext, getCurrentInstance, toRef, isRef, inject, nextTick, shallowRef, computed, isReadonly, version, unref, ref, watchEffect, watch, isShallow, isReactive, toRaw, h, defineComponent, Suspense, mergeProps, Transition, provide, withCtx, createVNode, useSSRContext, defineAsyncComponent, onErrorCaptured, onServerPrefetch, resolveDynamicComponent, createApp } from "vue";
 import { $fetch } from "ofetch";
 import { useRuntimeConfig as useRuntimeConfig$1 } from "#internal/nitro";
 import { createHooks } from "hookable";
@@ -8,11 +8,11 @@ import { sanitizeStatusCode, createError as createError$1 } from "h3";
 import { withQuery, hasProtocol, parseURL, joinURL } from "ufo";
 import "devalue";
 import { renderSSRHead } from "@unhead/ssr";
-import { getActiveHead, createServerHead as createServerHead$1, composableNames } from "unhead";
+import { createServerHead as createServerHead$1, getActiveHead } from "unhead";
 import { defineHeadPlugin } from "@unhead/shared";
+import { ssrRenderComponent, ssrRenderSuspense, ssrRenderVNode } from "vue/server-renderer";
 import "destr";
 import "klona";
-import { ssrRenderComponent, ssrRenderSuspense, ssrRenderVNode } from "vue/server-renderer";
 import { defu } from "defu";
 const appConfig = useRuntimeConfig$1().app;
 const baseURL = () => appConfig.baseURL;
@@ -170,9 +170,6 @@ function useRuntimeConfig() {
 function defineGetter(obj, key, val) {
   Object.defineProperty(obj, key, { get: () => val });
 }
-function defineAppConfig(config) {
-  return config;
-}
 const useStateKeyPrefix = "$s";
 function useState(...args) {
   const autoKey = typeof args[args.length - 1] === "string" ? args.pop() : void 0;
@@ -302,9 +299,6 @@ const createError = (err) => {
   _err.__nuxt_error = true;
   return _err;
 };
-const __nuxt_page_meta = {
-  middleware: "foo"
-};
 const _routes = [
   {
     name: "index",
@@ -312,15 +306,15 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/index-a5a55b8e.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/index-f44675da.js").then((m) => m.default || m)
   },
   {
-    name: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) ?? "foo",
-    path: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.path) ?? "/foo",
-    meta: __nuxt_page_meta || {},
-    alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
-    redirect: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect) || void 0,
-    component: () => import("./_nuxt/foo-104f40cf.js").then((m) => m.default || m)
+    name: "foo",
+    path: "/foo",
+    meta: {},
+    alias: [],
+    redirect: void 0,
+    component: () => import("./_nuxt/foo-20adeebc.js").then((m) => m.default || m)
   }
 ];
 const appHead = { "meta": [{ "name": "viewport", "content": "width=device-width, initial-scale=1" }, { "charset": "utf-8" }], "link": [], "style": [], "script": [], "noscript": [] };
@@ -401,9 +395,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
 const globalMiddleware = [
   validate
 ];
-const namedMiddleware = {
-  foo: () => import("./_nuxt/foo-a98f00a1.js")
-};
+const namedMiddleware = {};
 const plugin = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:router",
   enforce: "pre",
@@ -641,12 +633,6 @@ function useHead(input, options = {}) {
     return isBrowser ? clientUseHead(input, options) : serverUseHead(input, options);
   }
 }
-const coreComposableNames = [
-  "injectHead"
-];
-({
-  "@unhead/vue": [...coreComposableNames, ...composableNames]
-});
 function definePayloadReducer(name, reduce) {
   {
     useNuxtApp().ssrContext._payloadReducers[name] = reduce;
@@ -692,49 +678,11 @@ const unhead_KgADcZ0jPj = /* @__PURE__ */ defineNuxtPlugin({
     }
   }
 });
-const preference = "system";
-const componentName = "ColorScheme";
-const plugin_server_XNCxeHyTuP = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
-  const colorMode = useState("color-mode", () => reactive({
-    preference,
-    value: preference,
-    unknown: true,
-    forced: false
-  })).value;
-  const htmlAttrs = {};
-  {
-    useHead({ htmlAttrs });
-  }
-  useRouter().afterEach((to) => {
-    const forcedColorMode = to.meta.colorMode;
-    if (forcedColorMode && forcedColorMode !== "system") {
-      colorMode.value = htmlAttrs["data-color-mode-forced"] = forcedColorMode;
-      colorMode.forced = true;
-    } else if (forcedColorMode === "system") {
-      console.warn("You cannot force the colorMode to system at the page level.");
-    }
-  });
-  nuxtApp.provide("colorMode", colorMode);
-});
-const tailwind = "";
-const __uno = "";
-const unocss_MzCDxu9LMj = /* @__PURE__ */ defineNuxtPlugin(() => {
-});
-const my_plugin_hb4e3IoYlC = /* @__PURE__ */ defineNuxtPlugin(() => {
-  return {
-    provide: {
-      myPlugin: () => "String generated from my auto-imported plugin!"
-    }
-  };
-});
 const plugins = [
   plugin,
   revive_payload_server_eJ33V7gbc6,
   components_plugin_KR1HBZs4kY,
-  unhead_KgADcZ0jPj,
-  plugin_server_XNCxeHyTuP,
-  unocss_MzCDxu9LMj,
-  my_plugin_hb4e3IoYlC
+  unhead_KgADcZ0jPj
 ];
 const _wrapIf = (component, props, slots) => {
   props = props === true ? {} : props;
@@ -976,8 +924,8 @@ const _sfc_main$1 = {
     const statusMessage = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/error-404-df8e7c9c.js").then((r) => r.default || r));
-    const _Error = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/error-500-221991cc.js").then((r) => r.default || r));
+    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/error-404-cf65480f.js").then((r) => r.default || r));
+    const _Error = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/error-500-8346e771.js").then((r) => r.default || r));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ statusCode: unref(statusCode), statusMessage: unref(statusMessage), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));
@@ -995,7 +943,7 @@ const _sfc_main = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const IslandRenderer = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/island-renderer-b709be5c.js").then((r) => r.default || r));
+    const IslandRenderer = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/island-renderer-c2aa00a2.js").then((r) => r.default || r));
     const nuxtApp = useNuxtApp();
     nuxtApp.deferHydration();
     nuxtApp.ssrContext.url;
@@ -1063,16 +1011,10 @@ let entry;
 const entry$1 = (ctx) => entry(ctx);
 export {
   _export_sfc as _,
-  useNuxtApp as a,
-  componentName as b,
+  useHead as a,
   createError as c,
-  defineAppConfig as d,
   entry$1 as default,
-  useState as e,
-  useRuntimeConfig as f,
-  useRouter as g,
-  defineNuxtRouteMiddleware as h,
   navigateTo as n,
-  useHead as u
+  useRouter as u
 };
 //# sourceMappingURL=server.mjs.map

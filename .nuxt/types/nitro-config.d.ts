@@ -3,10 +3,9 @@
 // App Config
 import type { Defu } from 'defu'
 
-import type { default as appConfig0 } from "/home/projects/nuxt-examples-suakka/app.config";
-import type { default as appConfig1 } from "/home/projects/nuxt-examples-suakka/base/app.config";
 
-type UserAppConfig = Defu<{}, [typeof appConfig0, typeof appConfig1]>
+
+type UserAppConfig = Defu<{}, []>
 
 declare module 'nitropack' {
   interface AppConfig extends UserAppConfig {}
