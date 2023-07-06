@@ -5,9 +5,3 @@
     <img src="/Rectangle.png" />
   </div>
 </template>
-
-<script setup>
-definePageMeta({
-  middleware: 'foo',
-});
-</script>

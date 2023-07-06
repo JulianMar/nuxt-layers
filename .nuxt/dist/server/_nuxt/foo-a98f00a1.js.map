@@ -1,0 +1,1 @@
+{"version":3,"file":"foo-a98f00a1.js","sources":["../../../../base/middleware/foo.ts"],"sourcesContent":["export default defineNuxtRouteMiddleware(() => {\n  console.log('Hello from extended middleware !')\n})\n"],"names":[],"mappings":";;;;;;;;;;;;;;;;;AAAA,MAAe,MAA0B,0CAAA,MAAM;AAC7C,UAAQ,IAAI,kCAAkC;AAChD,CAAC;"}
